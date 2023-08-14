@@ -14,3 +14,14 @@ curl -X POST -H "Content-type: application/json" -d '{
     "num_inference_steps": 50, 
     "guidance_scale": 7.5 
     }' 'http://localhost:8000'
+
+curl -X POST \
+     -H "Content-type: application/json" \
+     -H 'X-Banana-API-Key: ccc38218-a30c-436c-9428-90f9d901075c' \
+     -H 'X-Banana-Model-Key: 24f64af0-6b38-4a3e-92d8-728ecd6893cc' \
+     -d '{
+         "prompt": "retro serie of different cars with different colors and shapes, mdjrny-v4 style",
+         "negative": "",
+         "num_inference_steps": 50,
+         "guidance_scale": 7.5
+    }' https://serverless-template-openjourney-llb9a2btcc.run.banana.dev/

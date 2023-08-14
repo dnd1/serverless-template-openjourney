@@ -40,10 +40,10 @@ def handler(context: dict, request: Request) -> Response:
     #     status=200
     # )
       # Parse out your arguments
-    prompt = model_inputs.get('prompt')
-    negative = model_inputs.get('negative')
-    num_inference_steps = model_inputs.get('num_inference_steps', 50)
-    guidance_scale = model_inputs.get('guidance_scale', 7)
+    prompt = request.json.get('prompt')
+    negative = request.json.get('negative')
+    num_inference_steps = request.json.get('num_inference_steps', 50)
+    guidance_scale = request.json.get('guidance_scale', 7)
     
     if prompt == None:
         return {'message': "No prompt provided"}
@@ -58,7 +58,7 @@ def handler(context: dict, request: Request) -> Response:
     image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
 
     # Return the results as a dictionary
-    return {'image_base64': image_base64}
+    return Response(json = {'image_base64': image_base64}, status=200)
 
 if __name__ == "__main__":
     app.serve()
