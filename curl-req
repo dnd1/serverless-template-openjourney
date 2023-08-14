@@ -1,0 +1,16 @@
+curl -X POST \     
+        -d '{
+    "prompt": "retro serie of different cars with different colors and shapes, mdjrny-v4 style",
+    "negative": "",
+    "num_inference_steps": 50,
+    "guidance_scale": 7.5
+    }' \
+    http://localhost:8000 
+
+
+curl -X POST -H "Content-type: application/json" -d '{
+    "prompt": "retro serie of different cars with different colors and shapes, mdjrny-v4 style", 
+    "negative": "", 
+    "num_inference_steps": 50, 
+    "guidance_scale": 7.5 
+    }' 'http://localhost:8000'
