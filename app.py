@@ -1,3 +1,4 @@
+from io import BytesIO
 from potassium import Potassium, Request, Response
 
 from transformers import pipeline
@@ -30,7 +31,7 @@ def init():
 @app.handler("/")
 def handler(context: dict, request: Request) -> Response:
     # prompt = request.json.get("prompt")
-    # model = context.get("model")
+    model = context.get("model")
     # image = model(prompt).images[0]
 
 
@@ -50,7 +51,7 @@ def handler(context: dict, request: Request) -> Response:
     
     # Run the model
     # t1 = time.time()
-    with autocast("cuda"):
+    with torch.autocast_decrement_nesting("cuda"):
         image = model(prompt, negative_prompt=negative, num_images_per_prompt=1, num_inference_steps=50, guidance_scale=7.5).images[0]
 
     buffered = BytesIO()
