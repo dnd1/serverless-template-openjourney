@@ -1,5 +1,4 @@
 potassium
 torch
 transformers
-base64
 diffusers
