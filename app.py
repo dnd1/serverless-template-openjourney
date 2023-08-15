@@ -47,11 +47,11 @@ def handler(context: dict, request: Request) -> Response:
     guidance_scale = request.json.get('guidance_scale', 7)
     
     if prompt == None:
-        return {'message': "No prompt provided"}
+        return Response(json = {'message': "No prompt provided"})
     
     # Run the model
     # t1 = time.time()
-    with torch.autocast_decrement_nesting("cuda"):
+    with torch.autocast_decrement_nesting():
         image = model(prompt, negative_prompt=negative, num_images_per_prompt=1, num_inference_steps=50, guidance_scale=7.5).images[0]
 
     buffered = BytesIO()
